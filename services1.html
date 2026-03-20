@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Crabstack</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="icon" type="image/png" href="/crab2.0.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#e60a15",
+              "background-light": "#f8f5f6",
+              "background-dark": "#000000",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <script>
+      const originalTitle = document.title;
+
+      const messages = ["Crabstack misses you "];
+
+      let i = 0;
+      let titleInterval;
+
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+          titleInterval = setInterval(() => {
+            document.title = messages[i % messages.length];
+            i++;
+          }, 1500);
+        } else {
+          clearInterval(titleInterval);
+          document.title = originalTitle;
+        }
+      });
+    </script>
+    <style type="text/tailwindcss">
+      .glass-card {
+        background: rgba(230, 10, 21, 0.03);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(230, 10, 21, 0.2);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .glass-card:hover {
+        background: rgba(230, 10, 21, 0.1);
+        border: 1px solid rgba(230, 10, 21, 0.6);
+        box-shadow: 0 0 30px rgba(230, 10, 21, 0.15);
+        transform: translateY(-4px);
+      }
+
+      .text-outline {
+        -webkit-text-stroke: 1px rgba(230, 10, 21, 0.3);
+        color: transparent;
+      }
+
+      html {
+        scroll-snap-type: y proximity;
+        scroll-behavior: smooth;
+      }
+
+      section {
+        scroll-snap-align: start;
+      }
+
+      #cta,
+      footer {
+        scroll-snap-align: none;
+      }
+      /* ✅ --- SEAMLESS INFINITE MARQUEE --- */
+      /* Marquee animation */
+      .marquee-container {
+        display: flex;
+        width: 100%;
+        overflow: hidden;
+        user-select: none;
+        padding: 4rem 0;
+      }
+
+      @keyframes scroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .animate-scroll {
+        display: flex;
+        flex-shrink: 0;
+        width: max-content;
+        gap: 4rem;
+        animation: scroll 30s linear infinite;
+      }
+
+      .marquee-container:hover .animate-scroll {
+        animation-play-state: paused;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-dark text-slate-100 font-display selection:bg-primary selection:text-white overflow-x-hidden"
+  >
+    <aside
+      class="fixed right-6 md:right-12 top-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-6 z-50"
+    >
+      <a
+        class="group relative flex items-center justify-end gap-4"
+        href="#hero"
+      >
+        <span
+          class="text-[10px] text-primary/0 group-hover:text-primary transition-all font-black uppercase tracking-widest hidden md:block"
+          >Top</span
+        >
+        <div
+          class="size-3 rounded-full border border-primary/50 group-hover:bg-primary transition-colors"
+        ></div>
+      </a>
+      <a
+        class="group relative flex items-center justify-end gap-4"
+        href="#cat-01"
+      >
+        <span
+          class="text-[10px] text-primary/0 group-hover:text-primary transition-all font-black uppercase tracking-widest hidden md:block"
+          >Development</span
+        >
+        <div
+          class="size-3 rounded-full border border-primary/50 group-hover:bg-primary transition-colors"
+        ></div>
+      </a>
+      <a
+        class="group relative flex items-center justify-end gap-4"
+        href="#cat-02"
+      >
+        <span
+          class="text-[10px] text-primary/0 group-hover:text-primary transition-all font-black uppercase tracking-widest hidden md:block"
+          >Design</span
+        >
+        <div
+          class="size-3 rounded-full border border-primary/50 group-hover:bg-primary transition-colors"
+        ></div>
+      </a>
+      <a
+        class="group relative flex items-center justify-end gap-4"
+        href="#cat-03"
+      >
+        <span
+          class="text-[10px] text-primary/0 group-hover:text-primary transition-all font-black uppercase tracking-widest hidden md:block"
+          >Marketing</span
+        >
+        <div
+          class="size-3 rounded-full border border-primary/50 group-hover:bg-primary transition-colors"
+        ></div>
+      </a>
+      <a
+        class="group relative flex items-center justify-end gap-4"
+        href="#cat-04"
+      >
+        <span
+          class="text-[10px] text-primary/0 group-hover:text-primary transition-all font-black uppercase tracking-widest hidden md:block"
+          >Media</span
+        >
+        <div
+          class="size-3 rounded-full border border-primary/50 group-hover:bg-primary transition-colors"
+        ></div>
+      </a>
+      <a
+        class="group relative flex items-center justify-end gap-4"
+        href="#cat-05"
+      >
+        <span
+          class="text-[10px] text-primary/0 group-hover:text-primary transition-all font-black uppercase tracking-widest hidden md:block"
+          >Events</span
+        >
+        <div
+          class="size-3 rounded-full border border-primary/50 group-hover:bg-primary transition-colors"
+        ></div>
+      </a>
+      <a class="group relative flex items-center justify-end gap-4" href="#cta">
+        <span
+          class="text-[10px] text-primary/0 group-hover:text-primary transition-all font-black uppercase tracking-widest hidden md:block"
+          >Join</span
+        >
+        <div
+          class="size-3 rounded-full border border-primary/50 group-hover:bg-primary transition-colors"
+        ></div>
+      </a>
+    </aside>
+    <header
+      class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-6 md:px-12 bg-gradient-to-b from-black to-transparent"
+    >
+      <!-- Navbar -->
+      <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-auto">
+        <div
+          class="pill-nav rounded-full px-8 py-3 flex items-center gap-6 md:gap-10 backdrop-blur-md bg-black/40 border border-white/10"
+        >
+          <a
+            href="./index.html"
+            class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+            >HOME</a
+          >
+          <a
+            href="/services.html"
+            class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+            >SERVICES</a
+          >
+          <a
+            href="./aboutus.html"
+            class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+            >ABOUT-US</a
+          >
+          <a
+            href="./work.html"
+            class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+            >WORK</a
+          >
+          <a
+            href="./contact.html"
+            class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+            >CONTACT</a
+          >
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section
+        id="home"
+        class="relative min-h-screen w-full grid place-items-center px-4 pt-32 overflow-hidden"
+      >
+        <!-- Side Markers -->
+        <div
+          class="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-24 items-center opacity-30 select-none z-50"
+        >
+          <span
+            class="-rotate-90 text-[8px] tracking-[0.5em] font-bold uppercase whitespace-nowrap"
+          >
+            EST.2026 / CRABSTACK
+          </span>
+          <div class="h-24 w-[1px] bg-white"></div>
+          <span
+            class="-rotate-90 text-[8px] tracking-[0.5em] font-bold uppercase whitespace-nowrap"
+          >
+            TECHY / AGENCY
+          </span>
+        </div>
+
+        <!-- Badge -->
+        <div
+          class="absolute top-32 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center"
+        >
+          <div
+            class="bg-primary px-4 py-1 rounded-sm shadow-[0_0_20px_rgba(230,10,21,0.3)]"
+          >
+            <span
+              class="text-[11px] font-bold tracking-[0.4em] text-white uppercase"
+            >
+              CONTACT US
+            </span>
+          </div>
+          <div
+            class="h-16 w-[1px] bg-gradient-to-b from-primary to-transparent mt-2 opacity-50"
+          ></div>
+        </div>
+
+        <!-- Heading -->
+        <div class="relative z-10 text-center max-w-7xl mx-auto">
+          <h1
+            class="text-[clamp(3rem,10vw,8rem)] leading-[0.9] font-bold uppercase tracking-tighter"
+          >
+            LET'S BUILD <br />
+            <span class="relative inline-block">
+              <span class="glitch-outline text-transparent"
+                >SOMETHING AMAZING</span
+              >
+              <span
+                aria-hidden="true"
+                class="glitch-slice text-transparent select-none pointer-events-none"
+                >SOMETHING AMAZING</span
+              >
+              <span
+                aria-hidden="true"
+                class="glitch-slice-2 text-transparent select-none pointer-events-none"
+                >SOMETHING AMAZING</span
+              >
+            </span>
+            TOGETHER
+          </h1>
+
+          <!-- CTA -->
+          <div class="mt-12 max-w-2xl mx-auto border-t border-white/5 pt-8">
+            <div class="flex justify-center">
+              <a
+                href="#inquiry-form"
+                class="group relative px-12 py-5 bg-primary text-white font-bold uppercase tracking-[0.3em] text-sm overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(230,10,21,0.6)]"
+              >
+                <span class="relative z-10">START YOUR PROJECT</span>
+                <div
+                  class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                ></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="h-screen flex flex-col justify-center px-6 md:px-12 relative border-t border-primary/10"
+        id="cat-01"
+      >
+        <!-- Background Number -->
+        <div
+          class="absolute inset-0 pointer-events-none flex items-center justify-center opacity-5"
+        >
+          <span
+            class="text-[40vw] font-black italic text-primary select-none leading-none"
+            >01</span
+          >
+        </div>
+
+        <!-- Content Grid -->
+        <div
+          class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10"
+        >
+          <!-- Left Heading -->
+          <div class="lg:col-span-5 space-y-6">
+            <span
+              class="text-primary font-black text-3xl italic tracking-tighter block"
+              >01 //</span
+            >
+            <h3
+              class="text-6xl md:text-7xl font-black uppercase tracking-tighter leading-none"
+            >
+              Development &amp; Tech
+            </h3>
+            <p class="text-slate-500 text-xl font-medium">
+              The Engine Room of Innovation.
+            </p>
+          </div>
+
+          <!-- Cards -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Card 1 -->
+            <div
+              class="glass-card rounded-lg p-6 group relative overflow-hidden flex flex-col"
+            >
+              <span
+                class="material-symbols-outlined text-5xl text-primary mb-6 group-hover:scale-110 transition-transform"
+                >code</span
+              >
+              <h4 class="text-2xl font-bold mb-3 tracking-tight">
+                Web Development
+              </h4>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                High-performance, scalable web ecosystems built with the latest
+                stack.
+              </p>
+              <div
+                class="mt-auto flex items-center text-primary text-xs font-black uppercase tracking-widest gap-2"
+              >
+                Explore
+                <span class="material-symbols-outlined text-sm"
+                  >arrow_forward</span
+                >
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="glass-card rounded-lg p-6 group flex flex-col">
+              <span class="material-symbols-outlined text-5xl text-primary mb-6"
+                >cloud_done</span
+              >
+              <h4 class="text-2xl font-bold mb-3 tracking-tight">
+                SaaS Solutions
+              </h4>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Custom architectural blueprints for modern software-as-a-service
+                platforms.
+              </p>
+              <div
+                class="mt-auto flex items-center text-primary text-xs font-black uppercase tracking-widest gap-2"
+              >
+                Explore
+                <span class="material-symbols-outlined text-sm"
+                  >arrow_forward</span
+                >
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div
+              class="glass-card rounded-lg p-6 group col-span-1 sm:col-span-2 flex flex-col"
+            >
+              <span class="material-symbols-outlined text-5xl text-primary mb-6"
+                >settings_input_component</span
+              >
+              <h4 class="text-2xl font-bold mb-3 tracking-tight">
+                Technical Systems Setup
+              </h4>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Complex deployments and dev-ops infrastructures for enterprise
+                scale.
+              </p>
+              <div
+                class="mt-auto flex items-center text-primary text-xs font-black uppercase tracking-widest gap-2"
+              >
+                Explore
+                <span class="material-symbols-outlined text-sm"
+                  >arrow_forward</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marquee Bar  -->
+        <!-- MARQUEE SECTION -->
+        <div class="marquee-container">
+          <div class="animate-scroll">
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >React</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >Node.js</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >TypeScript</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >AWS</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >Docker</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >GraphQL</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >PostgreSQL</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >Python</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >Next.js</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >Solidity</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >React</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >Node.js</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >TypeScript</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >AWS</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >Docker</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >GraphQL</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >PostgreSQL</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >Python</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >Next.js</span
+            >
+            <span
+              class="text-2xl font-bold text-white/20 hover:text-primary transition-colors uppercase"
+              >Solidity</span
+            >
+          </div>
+        </div>
+      </section>
+      <section
+        class="h-screen flex items-center px-6 md:px-12 relative border-t border-primary/10 bg-primary/5"
+        id="cat-02"
+      >
+        <div
+          class="absolute inset-0 pointer-events-none flex items-center justify-center opacity-5"
+        >
+          <span
+            class="text-[40vw] font-black italic text-primary select-none leading-none"
+            >02</span
+          >
+        </div>
+        <div
+          class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10"
+        >
+          <div class="lg:col-span-5 lg:order-2 space-y-6 lg:text-right">
+            <span
+              class="text-primary font-black text-3xl italic tracking-tighter block"
+              >02 //</span
+            >
+            <h3
+              class="text-6xl md:text-7xl font-black uppercase tracking-tighter leading-none"
+            >
+              Design &amp; Creative
+            </h3>
+            <p class="text-slate-500 text-xl font-medium">Visual Alchemy.</p>
+          </div>
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="glass-card rounded-lg overflow-hidden group">
+              <div class="h-64 bg-slate-900 relative">
+                <div
+                  class="absolute inset-0 bg-primary/20 mix-blend-overlay"
+                ></div>
+                <img
+                  class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                  data-alt="Futuristic UI dashboard design with glowing red accents"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhU4Y_kWZTcCaTDfDzEJGAkxIdyv0iTehrjlQgtfsCWpg7IDcI-dJQrD9j-ub2okAJvisK_SdHwVcndB1juEkwDkulmz84hcelQWVD1LpNpXuB1BZR5IIguZby-jbNjdszu3np5wvIOLQkTpQ3mvbqSkoG1dxZwgz5zhEA8y1UlWvHVKVx95S5LwIK486xiU19Cih1xL40w_bP1ZBgBVD03jI660o-fGd0Ma-hO3Qq9GuI7xyCFJXu-8qP3D-0lUr50ips8DhhLlTj"
+                />
+              </div>
+              <div class="p-8">
+                <h4 class="text-2xl font-bold mb-3 tracking-tight">
+                  UI/UX Design
+                </h4>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  Immersive digital interfaces optimized for high-conversion and
+                  emotion.
+                </p>
+              </div>
+            </div>
+            <div class="glass-card rounded-lg overflow-hidden group">
+              <div class="h-64 bg-slate-900 relative">
+                <div
+                  class="absolute inset-0 bg-primary/20 mix-blend-overlay"
+                ></div>
+                <img
+                  class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                  data-alt="Modern minimalist product design render with glass textures"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVwvLhaqnDpuVRvcHvmFfgVG6tZeh1xSZu3G-5i8Oav1E_vIoaCRV0JRSogk0O3te0pwWIJKQhQ5cspKtUrStj_Fn_CbRFzI1BEN-p2AHdQOJFPRpFokdLnGZtSR9vqTN3p_UMo6pwI7XrGkqj3nQXjA8-ec_R4jDwA5ezGHxsiAJXt86E-aaWR8SEVXn8MWgOpczPbFaAOM285mpJWO0gYtng8e5KFZbdUEreVVsBHRXkrWhg1_delBDMAbmRAGeILhdAKMtlJqj6"
+                />
+              </div>
+              <div class="p-8">
+                <h4 class="text-2xl font-bold mb-3 tracking-tight">
+                  Product Design
+                </h4>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  End-to-end product development from conceptual sketches to
+                  prototype.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="h-screen flex items-center px-6 md:px-12 relative border-t border-primary/10"
+        id="cat-03"
+      >
+        <div
+          class="absolute inset-0 pointer-events-none flex items-center justify-center opacity-5"
+        >
+          <span
+            class="text-[40vw] font-black italic text-primary select-none leading-none"
+            >03</span
+          >
+        </div>
+        <div
+          class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10"
+        >
+          <div class="lg:col-span-5 space-y-6">
+            <span
+              class="text-primary font-black text-3xl italic tracking-tighter block"
+              >03 //</span
+            >
+            <h3
+              class="text-6xl md:text-7xl font-black uppercase tracking-tighter leading-none"
+            >
+              Marketing &amp; Growth
+            </h3>
+            <p class="text-slate-500 text-xl font-medium">
+              Strategic Expansion.
+            </p>
+          </div>
+          <div class="lg:col-span-7 space-y-4">
+            <div
+              class="flex items-center justify-between p-12 glass-card hover:bg-primary/5 transition-colors group"
+            >
+              <span class="text-4xl font-bold tracking-tight uppercase"
+                >SEO Optimization</span
+              >
+              <span
+                class="material-symbols-outlined text-primary text-5xl group-hover:translate-x-4 transition-transform"
+                >trending_up</span
+              >
+            </div>
+            <div
+              class="flex items-center justify-between p-12 glass-card hover:bg-primary/5 transition-colors group"
+            >
+              <span class="text-4xl font-bold tracking-tight uppercase"
+                >Social Media Mgmt</span
+              >
+              <span
+                class="material-symbols-outlined text-primary text-5xl group-hover:translate-x-4 transition-transform"
+                >share</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="h-screen flex items-center px-6 md:px-12 relative border-t border-primary/10 bg-primary/5"
+        id="cat-04"
+      >
+        <div
+          class="absolute inset-0 pointer-events-none flex items-center justify-center opacity-5"
+        >
+          <span
+            class="text-[40vw] font-black italic text-primary select-none leading-none"
+            >04</span
+          >
+        </div>
+        <div
+          class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10"
+        >
+          <div class="lg:col-span-5 lg:order-2 space-y-6 lg:text-right">
+            <span
+              class="text-primary font-black text-3xl italic tracking-tighter block"
+              >04 //</span
+            >
+            <h3
+              class="text-6xl md:text-7xl font-black uppercase tracking-tighter leading-none"
+            >
+              Media &amp; Production
+            </h3>
+            <p class="text-slate-500 text-xl font-medium">Content as Art.</p>
+          </div>
+          <div class="lg:col-span-7 space-y-4">
+            <div
+              class="flex items-center justify-between p-12 glass-card hover:bg-primary/5 transition-colors group"
+            >
+              <span class="text-4xl font-bold tracking-tight uppercase"
+                >Video Editing</span
+              >
+              <span
+                class="material-symbols-outlined text-primary text-5xl group-hover:-translate-x-4 transition-transform"
+                >movie_filter</span
+              >
+            </div>
+            <div
+              class="flex items-center justify-between p-12 glass-card hover:bg-primary/5 transition-colors group"
+            >
+              <span class="text-4xl font-bold tracking-tight uppercase"
+                >Photo Manipulation</span
+              >
+              <span
+                class="material-symbols-outlined text-primary text-5xl group-hover:-translate-x-4 transition-transform"
+                >camera_enhance</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="h-screen flex items-center px-6 md:px-12 relative border-t border-primary/10"
+        id="cat-05"
+      >
+        <div
+          class="absolute bottom-0 right-0 p-24 opacity-5 pointer-events-none"
+        >
+          <span class="material-symbols-outlined text-[500px]"
+            >theater_comedy</span
+          >
+        </div>
+        <div class="max-w-7xl mx-auto w-full relative z-10">
+          <div class="mb-16">
+            <span
+              class="text-primary font-black text-3xl italic tracking-tighter block mb-4"
+              >05 //</span
+            >
+            <h3
+              class="text-7xl md:text-9xl font-black uppercase tracking-tighter leading-none mb-6"
+            >
+              LIVE FEED
+            </h3>
+            <p class="text-slate-400 text-2xl font-light max-w-3xl">
+              High-octane event organization, professional emceeing, and complex
+              technical staging.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div
+              class="glass-card p-12 flex flex-col justify-between h-[350px]"
+            >
+              <h4 class="text-4xl font-black italic uppercase leading-none">
+                Emcee Hosting
+              </h4>
+              <p class="text-slate-400 text-lg">
+                Professional crowd engagement and stage management for corporate
+                and private events.
+              </p>
+            </div>
+            <div
+              class="glass-card p-12 flex flex-col justify-between h-[350px] border-primary/40 bg-primary/10"
+            >
+              <h4 class="text-4xl font-black italic uppercase leading-none">
+                Event Organizer
+              </h4>
+              <p class="text-slate-400 text-lg">
+                Concept to execution. We handle the chaos so you can enjoy the
+                experience.
+              </p>
+            </div>
+            <div
+              class="glass-card p-12 flex flex-col justify-between h-[350px]"
+            >
+              <h4 class="text-4xl font-black italic uppercase leading-none">
+                Audio/Visual Tech
+              </h4>
+              <p class="text-slate-400 text-lg">
+                State-of-the-art audio systems, lighting rigs, and technical
+                direction.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        id="cta"
+        class="h-screen flex flex-col items-center justify-center text-center relative border-t border-primary/20 overflow-hidden snap-none"
+      >
+        <div class="absolute inset-0 bg-primary/5 opacity-50"></div>
+        <div class="relative z-10 space-y-12 max-w-4xl px-6">
+          <h2
+            class="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-tight"
+          >
+            READY TO <br /><span class="text-outline italic">GO CRAZY?</span>
+          </h2>
+          <div class="flex flex-col md:flex-row gap-6 justify-center">
+            <button
+              class="bg-primary hover:bg-primary/80 text-white px-12 py-6 rounded-lg font-black uppercase tracking-[0.2em] transition-all text-2xl shadow-[0_0_40px_rgba(230,10,21,0.4)]"
+            >
+              Initialize Project
+            </button>
+            <button
+              class="border border-primary/40 hover:bg-primary/10 text-primary px-12 py-6 rounded-lg font-black uppercase tracking-[0.2em] transition-all text-2xl"
+            >
+              Download Stack
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- Footer -->
+      <footer
+        id="contact"
+        class="py-32 px-6 border-t border-white/5 bg-[#030303] snap-none"
+      >
+        <div class="max-w-7xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-24">
+            <div>
+              <h2
+                class="text-6xl md:text-8xl font-bold uppercase tracking-tighter leading-none mb-12"
+              >
+                INITIATE <br /><span class="text-primary">CONTACT</span>
+              </h2>
+              <div class="grid grid-cols-2 gap-12">
+                <div>
+                  <span
+                    class="text-white/20 text-[9px] font-bold tracking-[0.4em] uppercase mb-4 block"
+                    >COMMS</span
+                  >
+                  <p class="text-lg font-bold">connect@crabstack.io</p>
+                  <p class="text-lg font-bold">
+                    +91 84338 77879<br />+91 72086 85628
+                  </p>
+                </div>
+                <div>
+                  <span
+                    class="text-white/20 text-[9px] font-bold tracking-[0.4em] uppercase mb-4 block"
+                    >LOCATION</span
+                  >
+                  <p class="text-lg font-bold">Andheri East</p>
+                  <p class="text-lg font-bold">Mumbai, Maharashtra</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col justify-between">
+              <div class="max-w-md">
+                <p
+                  class="text-white/40 text-lg font-light leading-relaxed mb-12"
+                >
+                  Join the vanguard of digital engineering. Now accepting
+                  high-priority digital missions.
+                </p>
+                <form class="relative">
+                  <input
+                    type="email"
+                    placeholder="TRANSMISSION@CLIENT.COM"
+                    class="w-full bg-transparent border-b border-white/20 py-4 focus:outline-none focus:border-primary text-sm tracking-widest uppercase transition-colors"
+                  />
+                  <button
+                    class="absolute right-0 bottom-4 text-primary font-bold text-[10px] tracking-widest"
+                  >
+                    CONNECT
+                  </button>
+                </form>
+              </div>
+
+              <div class="flex items-center gap-12 mt-24">
+                <span
+                  class="text-[10px] text-white/20 font-bold tracking-[0.5em]"
+                  >©2026 CRABSTACK</span
+                >
+                <div class="h-[1px] flex-grow bg-white/5"></div>
+                <div class="flex gap-8">
+                  <a
+                    href="#"
+                    class="text-[10px] text-white/40 hover:text-primary transition-colors font-bold tracking-widest"
+                    >TW</a
+                  >
+                  <a
+                    href="#"
+                    class="text-[10px] text-white/40 hover:text-primary transition-colors font-bold tracking-widest"
+                    >IG</a
+                  >
+                  <a
+                    href="#"
+                    class="text-[10px] text-white/40 hover:text-primary transition-colors font-bold tracking-widest"
+                    >LI</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
+

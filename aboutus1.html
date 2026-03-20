@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Crabstack</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#e60a15",
+              "background-dark": "#000000",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+              sans: ["Space Grotesk", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer base {
+        body {
+          @apply bg-background-dark text-white overflow-x-hidden selection:bg-primary selection:text-white font-display;
+        }
+      }
+
+      .text-huge {
+        font-size: clamp(3rem, 7vw, 7rem);
+        line-height: 0.9;
+        letter-spacing: -0.05em;
+      }
+
+      .grain {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.03;
+        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDcvWp3LUCjG22zKrELxbsmLVR7v816IM7Q82nrvzPR_hsiaSNzbhhrkeMpP23mDt5Td6ZD5ra4YpNcqLDN3lTZQWaYrPWt7iQOXEYXPuurMy23lfQcmBCcyQ5pfq2Qe9g-UROvr-_thsBJ3Cw0O56CehoOXsj32db-_WWTIAMrdU9Hth3fMLbHPA4-QsqpfuIOdIZaf9jUozPO3U0TgOo7fZDYPbKr83HY7k1wBJJPdMb-VJrrmR2cwyxh023HyFpS728NbzwSm_rm);
+      }
+
+      .pill-nav {
+        backdrop-filter: blur(8px);
+        background-color: rgba(26, 26, 26, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .glitch-outline {
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+        position: relative;
+      }
+
+      .glitch-slice {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        clip-path: polygon(0 15%, 100% 15%, 100% 20%, 0 20%);
+        transform: translateX(4px);
+        opacity: 0.5;
+        -webkit-text-stroke: 1px white;
+        pointer-events: none;
+      }
+
+      .glitch-slice-2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        clip-path: polygon(0 60%, 100% 60%, 100% 62%, 0 62%);
+        transform: translateX(-6px);
+        opacity: 0.4;
+        -webkit-text-stroke: 1px white;
+        pointer-events: none;
+      }
+
+      .contact-input {
+        @apply w-full bg-transparent border-b border-white/10 py-4 focus:outline-none focus:border-primary text-sm tracking-widest uppercase transition-all duration-300 placeholder:text-white/20;
+      }
+
+      .contact-label {
+        @apply text-primary text-[10px] font-bold tracking-[0.4em] uppercase mb-1 block;
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #e60a15;
+      }
+    </style>
+    <script>
+      const originalTitle = document.title;
+
+      const messages = ["Crabstack misses you "];
+
+      let i = 0;
+      let titleInterval;
+
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+          titleInterval = setInterval(() => {
+            document.title = messages[i % messages.length];
+            i++;
+          }, 1500);
+        } else {
+          clearInterval(titleInterval);
+          document.title = originalTitle;
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <main>
+    <div class="grain"></div>
+    <!-- Navigation -->
+    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-auto">
+      <div
+        class="pill-nav rounded-full px-8 py-3 flex items-center gap-6 md:gap-10 backdrop-blur-md bg-black/40 border border-white/10"
+      >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./index.html"
+          >HOME</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./services.html"
+          >SERVICES</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./aboutus.html"
+          >ABOUT-US</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./work.html"
+          >WORK</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./contact.html"
+          >CONTACT</a
+        >
+      </div>
+    </nav>
+    <!-- HERO -->
+    <section
+      class="relative min-h-screen flex items-center justify-center px-4"
+    >
+      <!-- Side Markers -->
+      <div
+        class="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-24 items-center opacity-30 select-none z-50"
+      >
+        <span
+          class="rotate-[-90deg] text-[8px] tracking-[0.5em] font-bold uppercase whitespace-nowrap"
+        >
+          EST.2026 / CRABSTACK
+        </span>
+        <div class="h-24 w-[1px] bg-white"></div>
+        <span
+          class="rotate-[-90deg] text-[8px] tracking-[0.5em] font-bold uppercase whitespace-nowrap"
+        >
+          TECHY / AGENCY
+        </span>
+      </div>
+
+      <!-- Background -->
+      <div class="absolute inset-0 -z-10">
+        <div
+          class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(230,10,21,0.12),transparent_70%)]"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-black via-[#050505] to-black"
+        ></div>
+      </div>
+
+      <!-- ✅ CENTERED CONTENT -->
+      <div
+        class="relative z-10 flex flex-col items-center justify-center text-center max-w-5xl mx-auto -mt-16"
+      >
+        <!-- Badge -->
+        <div class="mb-6 flex flex-col items-center">
+          <div
+            class="bg-primary px-4 py-1 rounded-sm shadow-[0_0_20px_rgba(230,10,21,0.3)]"
+          >
+            <span
+              class="text-[11px] font-bold tracking-[0.4em] text-white uppercase"
+            >
+              ABOUT
+            </span>
+          </div>
+          <div
+            class="h-14 w-[1px] bg-gradient-to-b from-primary to-transparent mt-2 opacity-50"
+          ></div>
+        </div>
+
+        <!-- Heading -->
+        <h1
+          class="text-huge font-bold uppercase select-none tracking-tighter text-center"
+        >
+          WE ARE <br />
+
+          <span class="relative inline-block text-[1.3em]">
+            <!-- Main red text -->
+            <span
+              class="text-primary drop-shadow-[0_0_15px_rgba(230,10,21,0.7)]"
+            >
+              CRABSTACK
+            </span>
+
+            <!-- Glitch slice 1 -->
+            <span
+              class="absolute inset-0 text-primary opacity-50 translate-x-[4px] pointer-events-none [clip-path:polygon(0_15%,100%_15%,100%_20%,0_20%)]"
+            >
+              CRABSTACK
+            </span>
+
+            <!-- Glitch slice 2 -->
+            <span
+              class="absolute inset-0 text-primary opacity-40 -translate-x-[6px] pointer-events-none [clip-path:polygon(0_60%,100%_60%,100%_62%,0_62%)]"
+            >
+              CRABSTACK
+            </span>
+          </span>
+        </h1>
+
+        <!-- Button -->
+        <div class="mt-12">
+          <button
+            class="group relative px-10 py-4 bg-neutral-900 border border-primary text-primary font-mono text-sm font-bold uppercase tracking-[0.2em] transition-all hover:bg-primary hover:text-white hover:shadow-[0_0_25px_rgba(230,10,21,0.6)] overflow-hidden hover:scale-105"
+          >
+            <span class="relative z-10">Explore More</span>
+            <div
+              class="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"
+            ></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bottom Status -->
+      <div class="absolute bottom-10 left-10 flex items-center gap-6 z-20">
+        <div class="flex items-center gap-3">
+          <span class="relative flex h-2 w-2">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex rounded-full h-2 w-2 bg-primary"
+            ></span>
+          </span>
+          <span
+            class="text-[10px] font-bold tracking-widest text-white/60 uppercase"
+          >
+            Systems Online [LIVE]
+          </span>
+        </div>
+        <div class="h-[1px] w-16 bg-white/20"></div>
+        <span
+          class="text-[10px] font-mono text-white/30 uppercase tracking-[0.2em]"
+        >
+          CORE-v3.0.1
+        </span>
+      </div>
+
+      <!-- Corner Borders -->
+      <div
+        class="absolute top-0 left-0 w-32 h-32 border-t border-l border-white/10 m-12 pointer-events-none"
+      ></div>
+      <div
+        class="absolute top-0 right-0 w-32 h-32 border-t border-r border-white/10 m-12 pointer-events-none"
+      ></div>
+      <div
+        class="absolute bottom-0 left-0 w-32 h-32 border-b border-l border-white/10 m-12 pointer-events-none"
+      ></div>
+      <div
+        class="absolute bottom-0 right-0 w-32 h-32 border-b border-r border-white/10 m-12 pointer-events-none"
+      ></div>
+    </section>
+
+    <!-- Section 2: Who We Are -->
+    <section class="py-32 border-y border-white/5">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+          <div class="md:col-span-5">
+            <h2
+              class="text-primary text-sm font-bold tracking-widest uppercase mb-4"
+            >
+              Who We Are
+            </h2>
+            <p class="text-3xl md:text-4xl font-bold leading-tight">
+              Performance-Driven <br />Digital Agency
+            </p>
+          </div>
+          <div class="md:col-span-7 pt-4">
+            <p
+              class="text-xl md:text-2xl text-slate-300 leading-relaxed font-light"
+            >
+              <span class="text-primary font-medium">Crabstack</span> is a
+              modern digital agency focused on building scalable,
+              high-performance systems engineered for growth. We bridge the gap
+              between aesthetic excellence and technical superiority.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Core Values -->
+    <section class="py-32 bg-white/[0.02]">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2
+          class="text-sm font-bold tracking-widest text-primary uppercase mb-16 text-center"
+        >
+          Our Core Values
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Innovation -->
+          <div
+            class="p-8 rounded-xl border border-white/5 bg-white/[0.03] group hover:border-primary/50 transition-all duration-500"
+          >
+            <div
+              class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary transition-colors"
+            >
+              <span
+                class="material-symbols-outlined text-primary group-hover:text-white"
+                >lightbulb</span
+              >
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Innovation</h3>
+            <p class="text-slate-400 leading-relaxed">
+              Creative thinking that pushes boundaries. We don't just follow
+              trends; we define the future of digital interaction.
+            </p>
+          </div>
+          <!-- Precision -->
+          <div
+            class="p-8 rounded-xl border border-white/5 bg-white/[0.03] group hover:border-primary/50 transition-all duration-500"
+          >
+            <div
+              class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary transition-colors"
+            >
+              <span
+                class="material-symbols-outlined text-primary group-hover:text-white"
+                >code</span
+              >
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Precision</h3>
+            <p class="text-slate-400 leading-relaxed">
+              Clean code and robust architecture. Every pixel and every line of
+              code serves a specific, optimized purpose.
+            </p>
+          </div>
+          <!-- Performance -->
+          <div
+            class="p-8 rounded-xl border border-white/5 bg-white/[0.03] group hover:border-primary/50 transition-all duration-500"
+          >
+            <div
+              class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary transition-colors"
+            >
+              <span
+                class="material-symbols-outlined text-primary group-hover:text-white"
+                >speed</span
+              >
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Performance</h3>
+            <p class="text-slate-400 leading-relaxed">
+              Built for speed, scalability, and growth. We prioritize loading
+              times and conversion metrics above all else.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: What Makes Us Different -->
+<section class="py-32 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-20">
+    <h2 class="text-sm font-bold tracking-widest text-primary uppercase mb-6">What Makes Us Different</h2>
+    <p class="text-3xl md:text-5xl font-bold max-w-4xl mx-auto leading-tight mb-8">
+                            Launch + Growth Model: We don’t just build websites — we help launch, optimize, and scale them strategically.
+                        </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="flex items-start gap-6 p-10 rounded-2xl bg-gradient-to-br from-white/[0.05] to-transparent border border-white/10">
+    <div class="p-4 bg-primary/20 rounded-full">
+    <span class="material-symbols-outlined text-primary">rocket_launch</span>
+    </div>
+    <div>
+    <h4 class="text-2xl font-bold mb-3">Performance-First Builds</h4>
+    <p class="text-slate-400 leading-relaxed">Optimized from day one. Every asset is compressed, every script is audited, and every interaction is streamlined for peak efficiency.</p>
+    </div>
+    </div>
+    <div class="flex items-start gap-6 p-10 rounded-2xl bg-gradient-to-br from-white/[0.05] to-transparent border border-white/10">
+    <div class="p-4 bg-primary/20 rounded-full">
+    <span class="material-symbols-outlined text-primary">ads_click</span>
+    </div>
+    <div>
+    <h4 class="text-2xl font-bold mb-3">Conversion-Focused Design</h4>
+    <p class="text-slate-400 leading-relaxed">Designed to generate results. We use psychological triggers and intuitive UX patterns to guide users toward your primary goals.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <!-- Section 5: Our Process -->
+    <section class="py-32 bg-primary/5">
+    <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-sm font-bold tracking-widest text-primary uppercase mb-20 text-center">Our Process</h2>
+    <div class="relative">
+    <!-- Timeline Line -->
+    <div class="absolute top-1/2 left-0 w-full h-px bg-white/10 -translate-y-1/2 hidden md:block"></div>
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+    <div class="relative z-10 text-center group">
+    <div class="w-16 h-16 bg-background-dark border-2 border-primary rounded-full flex items-center justify-center mx-auto mb-6 transition-all group-hover:scale-110 shadow-[0_0_20px_rgba(230,10,21,0.3)]">
+    <span class="text-xl font-bold">01</span>
+    </div>
+    <h5 class="text-xl font-bold mb-2">Strategy</h5>
+    <p class="text-sm text-slate-400">Defining goals &amp; roadmap</p>
+    </div>
+    <div class="relative z-10 text-center group">
+    <div class="w-16 h-16 bg-background-dark border-2 border-primary rounded-full flex items-center justify-center mx-auto mb-6 transition-all group-hover:scale-110 shadow-[0_0_20px_rgba(230,10,21,0.3)]">
+    <span class="text-xl font-bold">02</span>
+    </div>
+    <h5 class="text-xl font-bold mb-2">Design</h5>
+    <p class="text-sm text-slate-400">Visualizing the system</p>
+    </div>
+    <div class="relative z-10 text-center group">
+    <div class="w-16 h-16 bg-background-dark border-2 border-primary rounded-full flex items-center justify-center mx-auto mb-6 transition-all group-hover:scale-110 shadow-[0_0_20px_rgba(230,10,21,0.3)]">
+    <span class="text-xl font-bold">03</span>
+    </div>
+    <h5 class="text-xl font-bold mb-2">Develop</h5>
+    <p class="text-sm text-slate-400">Engineering the solution</p>
+    </div>
+    <div class="relative z-10 text-center group">
+    <div class="w-16 h-16 bg-background-dark border-2 border-primary rounded-full flex items-center justify-center mx-auto mb-6 transition-all group-hover:scale-110 shadow-[0_0_20px_rgba(230,10,21,0.3)]">
+    <span class="text-xl font-bold">04</span>
+    </div>
+    <h5 class="text-xl font-bold mb-2">Launch</h5>
+    <p class="text-sm text-slate-400">Deploying to production</p>
+    </div>
+    <div class="relative z-10 text-center group">
+    <div class="w-16 h-16 bg-background-dark border-2 border-primary rounded-full flex items-center justify-center mx-auto mb-6 transition-all group-hover:scale-110 shadow-[0_0_20px_rgba(230,10,21,0.3)]">
+    <span class="text-xl font-bold">05</span>
+    </div>
+    <h5 class="text-xl font-bold mb-2">Scale</h5>
+    <p class="text-sm text-slate-400">Optimizing for growth</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <!-- Section 6: Founder Section -->
+    <section class="py-32 bg-[#000000] text-white overflow-hidden relative">
+    <div class="max-w-7xl mx-auto px-6 relative">
+    <!-- Header Area -->
+    <div class="mb-16 flex flex-col items-start">
+    <div class="flex items-center gap-4 mb-12">
+    <div class="h-px w-10 bg-[#E50914]"></div>
+    <span class="text-[10px] font-mono tracking-[0.4em] text-[#E50914] uppercase">The Personnel</span>
+    </div>
+    <div class="relative">
+    <h2 class="text-[80px] md:text-[120px] font-black leading-[0.8] tracking-tighter uppercase mb-2">MEET THE</h2>
+    <h2 class="text-[80px] md:text-[120px] font-black leading-[0.8] tracking-tighter uppercase text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">ARCHITECTS</h2>
+    <!-- Vertical Decorative Text -->
+    <!-- <div class="absolute -left-12 top-0 h-full flex items-center">
+    <span class="rotate-[-90deg] text-[8px] font-mono tracking-[0.5em] text-white/20 whitespace-nowrap">ARCHITECTURAL GRID</span>
+    </div> -->
+    </div>
+    </div>
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 -space-x-px"><!-- Row 1, Col 1: Elias Vonk -->
+    <div class="p-10 border border-white/10 bg-black flex flex-col min-h-[350px] hover:bg-[#E50914]/10 transition-all duration-500 hover:scale-[1.02] cursor-pointer group">
+    <div class="text-[10px] font-mono text-white/30 mb-8 tracking-widest">01 / CORE</div>
+    <div class="flex-grow">
+    <h3 class="text-5xl font-bold leading-[0.9] mb-4">RAMON<br/>BAKURI</h3>
+    <p class="text-[10px] font-mono tracking-widest text-white/40 uppercase mb-8">Founder & Managing Director
+    </p>
+    </div>
+    <div class="flex items-center justify-between">
+    <div class="flex items-center gap-2">
+    <div class="h-[1px] w-4 bg-[#E50914]"></div>
+    <span class="text-[10px] font-mono tracking-widest text-[#E50914] uppercase">Radicalism</span>
+    </div>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-white/30 hover:text-primary transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.79-1.75-1.764 0-.973.784-1.764 1.75-1.764s1.75.791 1.75 1.764c0 .974-.784 1.764-1.75 1.764zm13.5 11.268h-3v-5.604c0-1.337-.027-3.061-1.865-3.061-1.865 0-2.152 1.456-2.152 2.965v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.562 2.84-1.562 3.038 0 3.6 2 3.6 4.604v5.591z"/>
+      </svg>
+    </a>
+    </div>
+    </div>
+    <!-- Row 1, Col 2: BENJU ROCKY -->
+    <div class="p-10 border border-white/10 bg-black flex flex-col min-h-[350px] hover:bg-[#E50914]/10 transition-all duration-500 hover:scale-[1.02] cursor-pointer group">
+    <div class="text-[10px] font-mono text-white/30 mb-8 tracking-widest">02 / EXPERIENCE</div>
+    <div class="flex-grow">
+    <h3 class="text-5xl font-bold leading-[0.9] mb-4">BENJAMIN<br/>AROKIARAJ</h3>
+    <p class="text-[10px] font-mono tracking-widest text-white/40 uppercase mb-8">Co-Founder & Director of Creative Strategy
+    </p>
+    </div>
+    <div class="flex items-center justify-between">
+    <div class="flex items-center gap-2">
+    <div class="h-[1px] w-4 bg-[#E50914]"></div>
+    <span class="text-[10px] font-mono tracking-widest text-[#E50914] uppercase">Brutalist</span>
+    </div>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-white/30 hover:text-primary transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.79-1.75-1.764 0-.973.784-1.764 1.75-1.764s1.75.791 1.75 1.764c0 .974-.784 1.764-1.75 1.764zm13.5 11.268h-3v-5.604c0-1.337-.027-3.061-1.865-3.061-1.865 0-2.152 1.456-2.152 2.965v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.562 2.84-1.562 3.038 0 3.6 2 3.6 4.604v5.591z"/>
+      </svg>
+    </a>
+    </div>
+    </div>
+    <!-- Row 1, Col 3: CROSBY D -->
+    <div class="p-10 border border-white/10 bg-black flex flex-col min-h-[350px] hover:bg-[#E50914]/10 transition-all duration-500 hover:scale-[1.02] cursor-pointer group">
+    <div class="text-[10px] font-mono text-white/30 mb-8 tracking-widest">03 / MOMENTUM</div>
+    <div class="flex-grow">
+    <h3 class="text-5xl font-bold leading-[0.9] mb-4">CROSBY<br/>DIAS</h3>
+    <p class="text-[10px] font-mono tracking-widest text-white/40 uppercase mb-8">Director of Growth & Marketing</p>
+    </div>
+    <div class="flex items-center justify-between">
+    <div class="flex items-center gap-2">
+    <div class="h-[1px] w-4 bg-[#E50914]"></div>
+    <span class="text-[10px] font-mono tracking-widest text-[#E50914] uppercase">Precision</span>
+    </div>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-white/30 hover:text-primary transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.79-1.75-1.764 0-.973.784-1.764 1.75-1.764s1.75.791 1.75 1.764c0 .974-.784 1.764-1.75 1.764zm13.5 11.268h-3v-5.604c0-1.337-.027-3.061-1.865-3.061-1.865 0-2.152 1.456-2.152 2.965v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.562 2.84-1.562 3.038 0 3.6 2 3.6 4.604v5.591z"/>
+      </svg>
+    </a>
+    </div>
+    </div>
+    <!-- Row 2, Col 1: Shawn Bata -->
+    <div class="p-10 border border-white/10 bg-black flex flex-col min-h-[350px] hover:bg-[#E50914]/10 transition-all duration-500 hover:scale-[1.02] cursor-pointer group">
+    <div class="text-[10px] font-mono text-white/30 mb-8 tracking-widest">04 / EXECUTION</div>
+    <div class="flex-grow">
+    <h3 class="text-5xl font-bold leading-[0.9] mb-4">SHAWN<br/>EDWARD</h3>
+    <p class="text-[10px] font-mono tracking-widest text-white/40 uppercase mb-8">Director of Operations & Finance</p>
+    </div>
+    <div class="flex items-center justify-between">
+    <div class="flex items-center gap-2">
+    <div class="h-[1px] w-4 bg-[#E50914]"></div>
+    <span class="text-[10px] font-mono tracking-widest text-[#E50914] uppercase">Impact</span>
+    </div>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-white/30 hover:text-primary transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.79-1.75-1.764 0-.973.784-1.764 1.75-1.764s1.75.791 1.75 1.764c0 .974-.784 1.764-1.75 1.764zm13.5 11.268h-3v-5.604c0-1.337-.027-3.061-1.865-3.061-1.865 0-2.152 1.456-2.152 2.965v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.562 2.84-1.562 3.038 0 3.6 2 3.6 4.604v5.591z"/>
+      </svg>
+    </a>
+    </div>
+    </div>
+    <!-- Row 2, Col 2: Shawn pin pan-->
+    <div class="p-10 border border-white/10 bg-black flex flex-col min-h-[350px] hover:bg-[#E50914]/10 transition-all duration-500 hover:scale-[1.02] cursor-pointer group">
+    <div class="text-[10px] font-mono text-white/30 mb-8 tracking-widest">05 / INFRASTRUCTURE</div>
+    <div class="flex-grow">
+    <h3 class="text-5xl font-bold leading-[0.9] mb-4">SHAWN<br/>FERNANDES</h3>
+    <p class="text-[10px] font-mono tracking-widest text-white/40 uppercase mb-8">Director of Technical Architecture</p>
+    </div>
+    <div class="flex items-center justify-between">
+    <div class="flex items-center gap-2">
+    <div class="h-[1px] w-4 bg-[#E50914]"></div>
+    <span class="text-[10px] font-mono tracking-widest text-[#E50914] uppercase">Velocity</span>
+    </div>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-white/30 hover:text-primary transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.79-1.75-1.764 0-.973.784-1.764 1.75-1.764s1.75.791 1.75 1.764c0 .974-.784 1.764-1.75 1.764zm13.5 11.268h-3v-5.604c0-1.337-.027-3.061-1.865-3.061-1.865 0-2.152 1.456-2.152 2.965v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.562 2.84-1.562 3.038 0 3.6 2 3.6 4.604v5.591z"/>
+      </svg>
+    </a>
+    </div>
+    </div>
+    <!-- Row 2, Col 3: Vacancy / Join Us -->
+    <div class="p-10 border border-white/10 bg-black flex flex-col min-h-[350px] hover:bg-white/[0.02] transition-all duration-500 cursor-pointer group">
+    <div class="text-[10px] font-mono text-white/30 mb-8 tracking-widest">06 / CAREERS</div>
+    <div class="flex-grow flex items-center">
+    <h3 class="text-4xl font-bold leading-[0.9] mb-4 text-white/20 group-hover:text-white/40 transition-colors uppercase">Your<br/>Role</h3>
+    </div>
+    <div class="flex items-center gap-2">
+    <div class="h-[1px] w-4 bg-white/20 group-hover:bg-[#E50914] transition-colors"></div>
+    <span class="text-[10px] font-mono tracking-widest text-white/20 group-hover:text-[#E50914] transition-colors uppercase">Apply Now</span>
+    </div>
+    </div></div>
+    <!-- Decorative sidebar elements -->
+    <!-- <div class="absolute left-6 top-[400px] flex flex-col gap-12">
+    <div class="rotate-[-90deg] origin-left text-[8px] font-mono tracking-[0.5em] text-white/20 whitespace-nowrap">STK-GG / 2024</div>
+    <div class="flex items-center gap-2 mt-20">
+    <span class="h-1.5 w-1.5 rounded-full bg-[#E50914]"></span>
+    <span class="text-[8px] font-mono tracking-widest text-white/40 uppercase">NODE: ACTIVE</span>
+    </div>
+    </div>
+    </div> -->
+    </section>
+    <!-- Section 7: Final CTA -->
+    <section class="py-32 bg-primary">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-4xl md:text-6xl font-bold text-white mb-10">Let’s Build Something Powerful.</h2>
+    <button class="bg-black text-white px-12 py-5 rounded-lg text-lg font-bold hover:bg-black/80 transition-all shadow-2xl">
+                        Start Your Project
+                    </button>
+    </div>
+    </section>
+    
+    
+
+    <!-- Footer -->
+    <footer
+      id="contact"
+      class="py-32 px-6 border-t border-white/5 bg-[#030303]"
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-24">
+          <div>
+            <h2
+              class="text-6xl md:text-8xl font-bold uppercase tracking-tighter leading-none mb-12"
+            >
+              INITIATE <br /><span class="text-primary">CONTACT</span>
+            </h2>
+            <div class="grid grid-cols-2 gap-12">
+              <div>
+                <span
+                  class="text-white/20 text-[9px] font-bold tracking-[0.4em] uppercase mb-4 block"
+                  >COMMS</span
+                >
+                <p class="text-lg font-bold">connect@crabstack.io</p>
+                <p class="text-lg font-bold">
+                  +91 84338 77879<br />+91 72086 85628
+                </p>
+              </div>
+              <div>
+                <span
+                  class="text-white/20 text-[9px] font-bold tracking-[0.4em] uppercase mb-4 block"
+                  >LOCATION</span
+                >
+                <p class="text-lg font-bold">Andheri East</p>
+                <p class="text-lg font-bold">Mumbai, Maharashtra</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col justify-between h-full">
+            <div class="max-w-md">
+              <p class="text-white/40 text-lg font-light leading-relaxed mb-12">
+                Join the vanguard of digital engineering. Now accepting
+                high-priority digital missions.
+              </p>
+
+              <form class="relative">
+                <input
+                  type="email"
+                  placeholder="TRANSMISSION@CLIENT.COM"
+                  class="w-full bg-transparent border-b border-white/20 py-4 focus:outline-none focus:border-primary text-sm tracking-widest uppercase transition-colors"
+                />
+                <button
+                  class="absolute right-0 bottom-4 text-primary font-bold text-[10px] tracking-widest"
+                >
+                  CONNECT
+                </button>
+              </form>
+            </div>
+
+            <div class="flex items-center justify-between mt-16">
+              <span
+                class="text-[10px] text-white/20 font-bold tracking-[0.5em]"
+              >
+                ©2026 CRABSTACK
+              </span>
+              <div class="h-[1px] flex-grow bg-white/5"></div>
+              <div class="flex gap-8">
+                <a class="text-[10px] text-white/40 hover:text-primary">TW</a>
+                <a class="text-[10px] text-white/40 hover:text-primary">IG</a>
+                <a class="text-[10px] text-white/40 hover:text-primary">LI</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Decorative Grids -->
+    <div
+      class="fixed inset-0 pointer-events-none z-[1] opacity-[0.03]"
+      style="
+        background-image: radial-gradient(white 1px, transparent 0);
+        background-size: 40px 40px;
+      "
+    ></div>
+</main>
+  </body>
+</html>

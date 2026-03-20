@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Crabstack | Initiate Contact</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#e60a15",
+              "background-dark": "#000000",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+              sans: ["Space Grotesk", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer base {
+        body {
+          @apply bg-background-dark text-white overflow-x-hidden selection:bg-primary selection:text-white font-display;
+        }
+      }
+
+      .text-huge {
+        font-size: clamp(3rem, 7vw, 7rem);
+        line-height: 0.9;
+        letter-spacing: -0.05em;
+      }
+
+      .grain {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.03;
+        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDcvWp3LUCjG22zKrELxbsmLVR7v816IM7Q82nrvzPR_hsiaSNzbhhrkeMpP23mDt5Td6ZD5ra4YpNcqLDN3lTZQWaYrPWt7iQOXEYXPuurMy23lfQcmBCcyQ5pfq2Qe9g-UROvr-_thsBJ3Cw0O56CehoOXsj32db-_WWTIAMrdU9Hth3fMLbHPA4-QsqpfuIOdIZaf9jUozPO3U0TgOo7fZDYPbKr83HY7k1wBJJPdMb-VJrrmR2cwyxh023HyFpS728NbzwSm_rm);
+      }
+
+      .pill-nav {
+        backdrop-filter: blur(8px);
+        background-color: rgba(26, 26, 26, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .glitch-outline {
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+        position: relative;
+      }
+
+      .glitch-slice {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        clip-path: polygon(0 15%, 100% 15%, 100% 20%, 0 20%);
+        transform: translateX(4px);
+        opacity: 0.5;
+        -webkit-text-stroke: 1px white;
+        pointer-events: none;
+      }
+
+      .glitch-slice-2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        clip-path: polygon(0 60%, 100% 60%, 100% 62%, 0 62%);
+        transform: translateX(-6px);
+        opacity: 0.4;
+        -webkit-text-stroke: 1px white;
+        pointer-events: none;
+      }
+
+      .contact-input {
+        @apply w-full bg-transparent border-b border-white/10 py-4 focus:outline-none focus:border-primary text-sm tracking-widest uppercase transition-all duration-300 placeholder:text-white/20;
+      }
+
+      .contact-label {
+        @apply text-primary text-[10px] font-bold tracking-[0.4em] uppercase mb-1 block;
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #e60a15;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grain"></div>
+    <!-- Navigation -->
+    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-auto">
+      <div
+        class="pill-nav rounded-full px-8 py-3 flex items-center gap-6 md:gap-10 backdrop-blur-md bg-black/40 border border-white/10"
+      >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./index.html"
+          >HOME</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./services.html"
+          >SERVICES</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./aboutus.html"
+          >ABOUT-US</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./work.html"
+          >WORK</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./contact.html"
+          >CONTACT</a
+        >
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <section
+      class="relative min-h-screen w-full flex flex-col items-center justify-center px-4 overflow-hidden"
+      id="home"
+    >
+      <!-- Side Markers -->
+      <div
+        class="absolute left-6 top-64 hidden lg:flex flex-col gap-24 items-center opacity-30 select-none z-50"
+      >
+        <span
+          class="rotate-[-90deg] text-[8px] tracking-[0.5em] font-bold uppercase whitespace-nowrap"
+          >EST.2026 / CRABSTACK</span
+        >
+        <div class="h-24 w-[1px] bg-white"></div>
+        <span
+          class="rotate-[-90deg] text-[8px] tracking-[0.5em] font-bold uppercase whitespace-nowrap"
+          >INITIATE / TRANSMISSION</span
+        >
+      </div>
+        >
+      </div>
+      <!-- Main Heading -->
+      <div class="relative z-10 text-center max-w-7xl mx-auto">
+        <h1 class="text-huge font-bold uppercase select-none tracking-tighter">
+          LET'S BUILD <br />
+          <span class="relative inline-block">
+            <span class="glitch-outline text-transparent"
+              >SOMETHING AMAZING</span
+            >
+            <span
+              aria-hidden="true"
+              class="glitch-slice text-transparent select-none pointer-events-none"
+              >SOMETHING AMAZING</span
+            >
+            <span
+              aria-hidden="true"
+              class="glitch-slice-2 text-transparent select-none pointer-events-none"
+              >SOMETHING AMAZING</span
+            >
+          </span>
+          <br />
+          TOGETHER
+        </h1>
+        <div class="mt-12 max-w-2xl mx-auto border-t border-white/5 pt-8">
+          <p
+            class="text-primary text-[10px] font-bold tracking-[0.4em] uppercase mb-4"
+          >
+            SYSTEM_MESSAGE_v1.0
+          </p>
+          <p
+            class="text-white/80 text-lg md:text-xl tracking-[0.05em] font-light leading-relaxed mb-10"
+          >
+            Tell us about your idea — we'll turn it into reality.
+          </p>
+          <div class="flex justify-center">
+            <a
+              class="group relative px-12 py-5 bg-primary text-white font-bold uppercase tracking-[0.3em] text-sm transition-all hover:shadow-[0_0_40px_rgba(230,10,21,0.6)] overflow-hidden inline-block"
+              href="#inquiry-form"
+            >
+              <span class="relative z-10">START YOUR PROJECT</span>
+              <div
+                class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"
+              ></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Inquiry Form Section -->
+    <section
+      class="py-20 px-6 bg-black border-t border-white/5"
+      id="inquiry-form"
+    >
+      <div class="max-w-4xl mx-auto">
+        <form class="space-y-12">
+          <div class="grid md:grid-cols-2 gap-12">
+            <div>
+              <label class="contact-label">Identification_Label</label>
+              <input
+                class="contact-input"
+                placeholder="ENTER YOUR NAME"
+                type="text"
+              />
+            </div>
+            <div>
+              <label class="contact-label">Communication_Node</label>
+              <input
+                class="contact-input"
+                placeholder="EMAIL@DOMAIN.COM"
+                type="email"
+              />
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-12">
+            <div>
+              <label class="contact-label">Mission_Parameters</label>
+              <select class="contact-input appearance-none">
+                <option value="">SELECT PROJECT TYPE</option>
+                <option value="web">WEB DEVELOPMENT</option>
+                <option value="design">UI/UX &amp; DESIGN</option>
+                <option value="marketing">MARKETING &amp; GROWTH</option>
+                <option value="events">EVENTS &amp; PRODUCTION</option>
+              </select>
+            </div>
+            <div>
+              <label class="contact-label">Financial_Scope</label>
+              <input
+                class="contact-input"
+                placeholder="ESTIMATED BUDGET"
+                type="text"
+              />
+            </div>
+          </div>
+          <div>
+            <label class="contact-label">Detailed_Mission_Brief</label>
+            <textarea
+              class="contact-input resize-none"
+              placeholder="TELL US ABOUT YOUR WILD VISION..."
+              rows="4"
+            ></textarea>
+          </div>
+          <div class="pt-8 flex justify-center">
+            <button
+              class="group relative px-12 py-5 bg-neutral-900 border border-primary text-primary font-bold uppercase tracking-[0.3em] text-xs transition-all hover:bg-primary hover:text-white hover:shadow-[0_0_30px_rgba(230,10,21,0.4)] overflow-hidden scale-110"
+            >
+              <span class="relative z-10">EXECUTE_TRANSMISSION</span>
+              <div
+                class="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"
+              ></div>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer
+      class="py-32 px-6 border-t border-white/5 bg-[#030303]"
+      id="contact"
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-24">
+          <div>
+            <h2
+              class="text-6xl font-bold uppercase tracking-tighter leading-none mb-12"
+            >
+              INITIATE <br /><span class="text-primary">CONTACT</span>
+            </h2>
+            <div class="grid grid-cols-2 gap-12">
+              <div>
+                <span
+                  class="text-white/20 text-[9px] font-bold tracking-[0.4em] uppercase mb-4 block"
+                  >COMMS</span
+                >
+                <p class="text-sm font-bold">connect@crabstack.io</p>
+                <p class="text-sm font-bold">+91 84338 77879</p>
+              </div>
+              <div>
+                <span
+                  class="text-white/20 text-[9px] font-bold tracking-[0.4em] uppercase mb-4 block"
+                  >LOCATION</span
+                >
+                <p class="text-sm font-bold">Andheri East</p>
+                <p class="text-sm font-bold">Mumbai, India</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col justify-end">
+            <div class="flex items-center gap-12 mt-24">
+              <span class="text-[10px] text-white/20 font-bold tracking-[0.5em]"
+                >©2026 CRABSTACK</span
+              >
+              <div class="h-[1px] flex-grow bg-white/5"></div>
+              <div class="flex gap-8">
+                <a
+                  class="text-[10px] text-white/40 hover:text-primary transition-colors font-bold tracking-widest"
+                  href="#"
+                  >TW</a
+                >
+                <a
+                  class="text-[10px] text-white/40 hover:text-primary transition-colors font-bold tracking-widest"
+                  href="#"
+                  >IG</a
+                >
+                <a
+                  class="text-[10px] text-white/40 hover:text-primary transition-colors font-bold tracking-widest"
+                  href="#"
+                  >LI</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Decorative Grids -->
+    <div
+      class="fixed inset-0 pointer-events-none z-[1] opacity-[0.03]"
+      style="
+        background-image: radial-gradient(white 1px, transparent 0);
+        background-size: 40px 40px;
+      "
+    ></div>
+  </body>
+</html>

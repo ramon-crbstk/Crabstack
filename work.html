@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crabstack</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#e60a15",
+              "background-dark": "#000000",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+              sans: ["Space Grotesk", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background: #000;
+        color: white;
+        font-family: "Space Grotesk", sans-serif;
+        overflow-x: hidden;
+      }
+
+      .text-huge {
+        font-size: clamp(3rem, 12vw, 10rem);
+        line-height: 0.9;
+        letter-spacing: -0.05em;
+      }
+
+      .grain {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.03;
+        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDcvWp3LUCjG22zKrELxbsmLVR7v816IM7Q82nrvzPR_hsiaSNzbhhrkeMpP23mDt5Td6ZD5ra4YpNcqLDN3lTZQWaYrPWt7iQOXEYXPuurMy23lfQcmBCcyQ5pfq2Qe9g-UROvr-_thsBJ3Cw0O56CehoOXsj32db-_WWTIAMrdU9Hth3fMLbHPA4-QsqpfuIOdIZaf9jUozPO3U0TgOo7fZDYPbKr83HY7k1wBJJPdMb-VJrrmR2cwyxh023HyFpS728NbzwSm_rm);
+      }
+
+      .pill-nav {
+        backdrop-filter: blur(8px);
+        background-color: rgba(26, 26, 26, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .glitch-outline {
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+        position: relative;
+      }
+
+      .glitch-slice {
+        position: absolute;
+        inset: 0;
+        clip-path: polygon(0 15%, 100% 15%, 100% 20%, 0 20%);
+        transform: translateX(4px);
+        opacity: 0.5;
+        -webkit-text-stroke: 1px white;
+      }
+
+      .glitch-slice-2 {
+        position: absolute;
+        inset: 0;
+        clip-path: polygon(0 60%, 100% 60%, 100% 62%, 0 62%);
+        transform: translateX(-6px);
+        opacity: 0.4;
+        -webkit-text-stroke: 1px white;
+      }
+
+      /* 🔥 Custom Scrollbar - Crabstack Style */
+
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #050505;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #e60a15, #000000);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #ff1a1f, #000000);
+      }
+
+      /* Firefox Support */
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: #e60a15 #050505;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="grain"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-auto">
+      <div
+        class="pill-nav rounded-full px-8 py-3 flex items-center gap-6 md:gap-10 backdrop-blur-md bg-black/40 border border-white/10"
+      >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./index.html"
+          >HOME</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./services.html"
+          >SERVICES</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./aboutus.html"
+          >ABOUT-US</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./work.html"
+          >WORK</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./contact.html"
+          >CONTACT</a
+        >
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section
+      class="relative min-h-screen flex items-center justify-center px-4"
+    >
+      <!-- Side Markers (unchanged) -->
+      <div
+        class="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-24 items-center opacity-30 select-none z-50"
+      >
+        <span
+          class="rotate-[-90deg] text-[8px] tracking-[0.5em] font-bold uppercase whitespace-nowrap"
+        >
+          EST.2026 / CRABSTACK
+        </span>
+        <div class="h-24 w-[1px] bg-white"></div>
+        <span
+          class="rotate-[-90deg] text-[8px] tracking-[0.5em] font-bold uppercase whitespace-nowrap"
+        >
+          TECHY / AGENCY
+        </span>
+      </div>
+
+      <!-- Background -->
+      <div class="absolute inset-0 -z-10">
+        <div
+          class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(230,10,21,0.12),transparent_70%)]"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-black via-[#050505] to-black"
+        ></div>
+      </div>
+
+      <!-- ✅ CENTERED CONTENT -->
+      <div
+        class="relative z-10 flex flex-col items-center justify-center text-center max-w-5xl mx-auto -mt-16"
+      >
+        <!-- Badge -->
+        <div class="mb-6 flex flex-col items-center">
+          <div
+            class="bg-primary px-4 py-1 rounded-sm shadow-[0_0_20px_rgba(230,10,21,0.3)]"
+          >
+            <span
+              class="text-[11px] font-bold tracking-[0.4em] text-white uppercase"
+            >
+              PORTFOLIO
+            </span>
+          </div>
+          <div
+            class="h-14 w-[1px] bg-gradient-to-b from-primary to-transparent mt-2 opacity-50"
+          ></div>
+        </div>
+
+        <!-- Heading -->
+        <h1
+          class="text-[clamp(2.5rem,10vw,8rem)] font-bold uppercase tracking-tight leading-[0.95]"
+        >
+          SEE OUR WORK <br />
+          <span class="relative inline-block">
+            <span class="glitch-outline text-transparent">IN ACTION</span>
+            <span class="glitch-slice text-transparent">IN ACTION</span>
+            <span class="glitch-slice-2 text-transparent">IN ACTION</span>
+          </span>
+        </h1>
+
+        <!-- Button -->
+        <div class="mt-12">
+          <button
+            class="group relative px-10 py-4 bg-neutral-900 border border-primary text-primary font-mono text-sm font-bold uppercase tracking-[0.2em] transition-all hover:bg-primary hover:text-white hover:shadow-[0_0_25px_rgba(230,10,21,0.6)] overflow-hidden hover:scale-105"
+          >
+            <span class="relative z-10">Explore More</span>
+            <div
+              class="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"
+            ></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bottom Status (unchanged) -->
+      <div class="absolute bottom-10 left-10 flex items-center gap-6 z-20">
+        <div class="flex items-center gap-3">
+          <span class="relative flex h-2 w-2">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex rounded-full h-2 w-2 bg-primary"
+            ></span>
+          </span>
+          <span
+            class="text-[10px] font-bold tracking-widest text-white/60 uppercase"
+          >
+            Systems Online [LIVE]
+          </span>
+        </div>
+        <div class="h-[1px] w-16 bg-white/20"></div>
+        <span
+          class="text-[10px] font-mono text-white/30 uppercase tracking-[0.2em]"
+        >
+          CORE-v3.0.1
+        </span>
+      </div>
+    </section>
+    <section
+      class="py-20 px-[10%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-white/5 border-b border-white/5"
+    >
+      <!-- Item -->
+      <div class="flex items-start gap-4">
+        <div class="w-[10px] h-[10px] bg-primary mt-2"></div>
+        <div>
+          <h2 class="text-4xl font-black">10+</h2>
+          <p class="text-[10px] text-white/40 uppercase tracking-[2px]">
+            Major Events
+          </p>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="flex items-start gap-4">
+        <div class="w-[10px] h-[10px] bg-primary mt-2"></div>
+        <div>
+          <h2 class="text-4xl font-black">50+</h2>
+          <p class="text-[10px] text-white/40 uppercase tracking-[2px]">
+            Projects
+          </p>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="flex items-start gap-4">
+        <div class="w-[10px] h-[10px] bg-primary mt-2"></div>
+        <div>
+          <h2 class="text-4xl font-black">100%</h2>
+          <p class="text-[10px] text-white/40 uppercase tracking-[2px]">
+            Success
+          </p>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="flex items-start gap-4">
+        <div class="w-[10px] h-[10px] bg-primary mt-2"></div>
+        <div>
+          <h2 class="text-4xl font-black">99.9%</h2>
+          <p class="text-[10px] text-white/40 uppercase tracking-[2px]">
+            Reliability
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="py-24 px-[5%]">
+      <!-- Header -->
+      <div
+        class="flex justify-between items-end mb-16 flex-col md:flex-row gap-6"
+      >
+        <h2
+          class="text-4xl font-black uppercase border-b-4 border-primary inline-block pb-2"
+        >
+          Deployed_Operations
+        </h2>
+
+        <div class="flex gap-2">
+          <button
+            class="filter-btn bg-primary text-white border border-primary px-4 py-2 text-[10px] font-bold uppercase"
+            data-filter="all"
+          >
+            All
+          </button>
+
+          <button
+            class="filter-btn border border-white/10 text-white/40 px-4 py-2 text-[10px] font-bold uppercase hover:border-primary hover:text-white transition"
+            data-filter="development"
+          >
+            Development
+          </button>
+
+          <button
+            class="filter-btn border border-white/10 text-white/40 px-4 py-2 text-[10px] font-bold uppercase hover:border-primary hover:text-white transition"
+            data-filter="music"
+          >
+            Music
+          </button>
+
+          <button
+            class="filter-btn border border-white/10 text-white/40 px-4 py-2 text-[10px] font-bold uppercase hover:border-primary hover:text-white transition"
+            data-filter="design"
+          >
+            Design
+          </button>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Card -->
+        <div
+          class="work-card relative bg-[#111] h-[400px] overflow-hidden flex flex-col justify-end p-8 group transition-all duration-300"
+          data-category="development"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b"
+            class="absolute inset-0 w-full h-full object-cover opacity-40 transition duration-500 group-hover:opacity-60 group-hover:scale-105"
+          />
+
+          <div class="relative z-10">
+            <span class="text-primary text-[10px] font-black uppercase"
+              >Development</span
+            >
+            <h3 class="text-2xl uppercase font-bold">Nexus OS</h3>
+          </div>
+
+          <a
+            href="#"
+            class="absolute right-8 bottom-8 text-[10px] uppercase font-bold z-10"
+          >
+            View Project →
+          </a>
+        </div>
+
+        <!-- Card -->
+        <div
+          class="work-card relative bg-[#111] h-[400px] overflow-hidden flex flex-col justify-end p-8 group transition-all duration-300"
+          data-category="music"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04"
+            class="absolute inset-0 w-full h-full object-cover opacity-40 transition duration-500 group-hover:opacity-60 group-hover:scale-105"
+          />
+
+          <div class="relative z-10">
+            <span class="text-primary text-[10px] font-black uppercase"
+              >Music</span
+            >
+            <h3 class="text-2xl uppercase font-bold">Beatbox Reels</h3>
+          </div>
+
+          <a
+            href="#"
+            class="absolute right-8 bottom-8 text-[10px] uppercase font-bold z-10"
+          >
+            View Project →
+          </a>
+        </div>
+
+        <!-- Card -->
+        <div
+          class="work-card relative bg-[#111] h-[400px] overflow-hidden flex flex-col justify-end p-8 group transition-all duration-300"
+          data-category="design"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400"
+            class="absolute inset-0 w-full h-full object-cover opacity-40 transition duration-500 group-hover:opacity-60 group-hover:scale-105"
+          />
+
+          <div class="relative z-10">
+            <span class="text-primary text-[10px] font-black uppercase"
+              >Design</span
+            >
+            <h3 class="text-2xl uppercase font-bold">Valkyrie Retail</h3>
+          </div>
+
+          <a
+            href="#"
+            class="absolute right-8 bottom-8 text-[10px] uppercase font-bold z-10"
+          >
+            View Project →
+          </a>
+        </div>
+
+        <!-- Card -->
+        <div
+          class="work-card relative bg-[#111] h-[400px] overflow-hidden flex flex-col justify-end p-8 group transition-all duration-300"
+          data-category="events"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"
+            class="absolute inset-0 w-full h-full object-cover opacity-40 transition duration-500 group-hover:opacity-60 group-hover:scale-105"
+          />
+
+          <div class="relative z-10">
+            <span class="text-primary text-[10px] font-black uppercase"
+              >Events</span
+            >
+            <h3 class="text-2xl uppercase font-bold">Core Node</h3>
+          </div>
+
+          <a
+            href="#"
+            class="absolute right-8 bottom-8 text-[10px] uppercase font-bold z-10"
+          >
+            View Project →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const buttons = document.querySelectorAll(".filter-btn");
+      const cards = document.querySelectorAll(".work-card");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // Reset buttons
+          buttons.forEach((btn) => {
+            btn.classList.remove("bg-primary", "text-white", "border-primary");
+            btn.classList.add("text-white/40", "border-white/10");
+          });
+
+          // Activate clicked
+          button.classList.add("bg-primary", "text-white", "border-primary");
+
+          const filter = button.dataset.filter;
+
+          cards.forEach((card) => {
+            // animate out
+            card.classList.add("opacity-0", "scale-95");
+
+            setTimeout(() => {
+              if (filter === "all" || card.dataset.category === filter) {
+                card.classList.remove("hidden");
+                setTimeout(() => {
+                  card.classList.remove("opacity-0", "scale-95");
+                }, 50);
+              } else {
+                card.classList.add("hidden");
+              }
+            }, 200);
+          });
+        });
+      });
+    </script>
+
+    <!-- FOOTER -->
+    <footer class="py-32 px-6 border-t border-white/5 bg-[#030303]">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24">
+        <div>
+          <h2 class="text-6xl font-bold uppercase mb-12">
+            INITIATE <br /><span class="text-primary">CONTACT</span>
+          </h2>
+
+          <div class="grid grid-cols-2 gap-12">
+            <div>
+              <span class="text-white/20 text-[9px] uppercase mb-4 block"
+                >COMMS</span
+              >
+              <p class="text-sm font-bold">connect@crabstack.io</p>
+              <p class="text-sm font-bold">+91 84338 77879</p>
+            </div>
+
+            <div>
+              <span class="text-white/20 text-[9px] uppercase mb-4 block"
+                >LOCATION</span
+              >
+              <p class="text-sm font-bold">Mumbai, India</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col justify-end">
+          <div class="flex items-center gap-12 mt-24">
+            <span class="text-[10px] text-white/20">©2026 CRABSTACK</span>
+            <div class="h-[1px] flex-grow bg-white/5"></div>
+            <div class="flex gap-8">
+              <a class="text-[10px] text-white/40 hover:text-primary" href="#"
+                >TW</a
+              >
+              <a class="text-[10px] text-white/40 hover:text-primary" href="#"
+                >IG</a
+              >
+              <a class="text-[10px] text-white/40 hover:text-primary" href="#"
+                >LI</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- GRID BACKGROUND -->
+    <div
+      class="fixed inset-0 pointer-events-none opacity-[0.03]"
+      style="
+        background-image: radial-gradient(white 1px, transparent 0);
+        background-size: 40px 40px;
+      "
+    ></div>
+  </body>
+</html>

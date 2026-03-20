@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Crabstack</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#e60a15",
+              "background-dark": "#000000",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+              sans: ["Space Grotesk", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer base {
+        body {
+          @apply bg-background-dark text-white overflow-x-hidden selection:bg-primary selection:text-white font-display;
+        }
+      }
+
+      .text-huge {
+        font-size: clamp(3rem, 7vw, 7rem);
+        line-height: 0.9;
+        letter-spacing: -0.05em;
+      }
+
+      .grain {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.03;
+        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDcvWp3LUCjG22zKrELxbsmLVR7v816IM7Q82nrvzPR_hsiaSNzbhhrkeMpP23mDt5Td6ZD5ra4YpNcqLDN3lTZQWaYrPWt7iQOXEYXPuurMy23lfQcmBCcyQ5pfq2Qe9g-UROvr-_thsBJ3Cw0O56CehoOXsj32db-_WWTIAMrdU9Hth3fMLbHPA4-QsqpfuIOdIZaf9jUozPO3U0TgOo7fZDYPbKr83HY7k1wBJJPdMb-VJrrmR2cwyxh023HyFpS728NbzwSm_rm);
+      }
+
+      .pill-nav {
+        backdrop-filter: blur(8px);
+        background-color: rgba(26, 26, 26, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .glitch-outline {
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+        position: relative;
+      }
+
+      .glitch-slice {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        clip-path: polygon(0 15%, 100% 15%, 100% 20%, 0 20%);
+        transform: translateX(4px);
+        opacity: 0.5;
+        -webkit-text-stroke: 1px white;
+        pointer-events: none;
+      }
+
+      .glitch-slice-2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        clip-path: polygon(0 60%, 100% 60%, 100% 62%, 0 62%);
+        transform: translateX(-6px);
+        opacity: 0.4;
+        -webkit-text-stroke: 1px white;
+        pointer-events: none;
+      }
+
+      .contact-input {
+        @apply w-full bg-transparent border-b border-white/10 py-4 focus:outline-none focus:border-primary text-sm tracking-widest uppercase transition-all duration-300 placeholder:text-white/20;
+      }
+
+      .contact-label {
+        @apply text-primary text-[10px] font-bold tracking-[0.4em] uppercase mb-1 block;
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #e60a15;
+      }
+    </style>
+    <script>
+      const originalTitle = document.title;
+
+      const messages = ["Crabstack misses you "];
+
+      let i = 0;
+      let titleInterval;
+
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+          titleInterval = setInterval(() => {
+            document.title = messages[i % messages.length];
+            i++;
+          }, 1500);
+        } else {
+          clearInterval(titleInterval);
+          document.title = originalTitle;
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div class="grain"></div>
+    <!-- Navigation -->
+    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-auto">
+      <div
+        class="pill-nav rounded-full px-8 py-3 flex items-center gap-6 md:gap-10 backdrop-blur-md bg-black/40 border border-white/10"
+      >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./index.html"
+          >HOME</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./services.html"
+          >SERVICES</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./aboutus.html"
+          >ABOUT-US</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./work.html"
+          >WORK</a
+        >
+        <a
+          class="text-[10px] tracking-[0.2em] font-bold text-white/60 hover:text-primary transition-colors duration-300"
+          href="./contact.html"
+          >CONTACT</a
+        >
+      </div>
+    </nav>
+    <!-- HERO -->
+    <section
+      class="relative min-h-screen flex items-center justify-center px-4"
+    >
+      <!-- Side Markers -->
+      <div
+        class="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-24 items-center opacity-30 select-none z-50"
+      >
+        <span
+          class="rotate-[-90deg] text-[8px] tracking-[0.5em] font-bold uppercase whitespace-nowrap"
+        >
+          EST.2026 / CRABSTACK
+        </span>
+        <div class="h-24 w-[1px] bg-white"></div>
+        <span
+          class="rotate-[-90deg] text-[8px] tracking-[0.5em] font-bold uppercase whitespace-nowrap"
+        >
+          TECHY / AGENCY
+        </span>
+      </div>
+
+      <!-- Background -->
+      <div class="absolute inset-0 -z-10">
+        <div
+          class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(230,10,21,0.12),transparent_70%)]"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-black via-[#050505] to-black"
+        ></div>
+      </div>
+
+      <!-- ✅ CENTERED CONTENT -->
+      <div
+        class="relative z-10 flex flex-col items-center justify-center text-center max-w-5xl mx-auto -mt-16"
+      >
+        <!-- Badge -->
+        <div class="mb-6 flex flex-col items-center">
+          <div
+            class="bg-primary px-4 py-1 rounded-sm shadow-[0_0_20px_rgba(230,10,21,0.3)]"
+          >
+            <span
+              class="text-[11px] font-bold tracking-[0.4em] text-white uppercase"
+            >
+              CONTACT_US
+            </span>
+          </div>
+          <div
+            class="h-14 w-[1px] bg-gradient-to-b from-primary to-transparent mt-2 opacity-50"
+          ></div>
+        </div>
+
+        <!-- Heading -->
+        <h1
+          class="text-[clamp(2.5rem,10vw,8rem)] font-bold uppercase tracking-tight leading-[0.95]"
+        >
+          LET’S BUILD<br />
+          <span class="relative inline-block">
+            <span class="glitch-outline text-transparent">TOGETHER</span>
+            <span class="glitch-slice text-transparent">TOGETHER</span>
+            <span class="glitch-slice-2 text-transparent">TOGETHER</span>
+          </span>
+        </h1>
+
+        <!-- Button -->
+        <div class="mt-12">
+          <button
+            class="group relative px-10 py-4 bg-neutral-900 border border-primary text-primary font-mono text-sm font-bold uppercase tracking-[0.2em] transition-all hover:bg-primary hover:text-white hover:shadow-[0_0_25px_rgba(230,10,21,0.6)] overflow-hidden hover:scale-105"
+          >
+            <span class="relative z-10">Explore More</span>
+            <div
+              class="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"
+            ></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bottom Status -->
+      <div class="absolute bottom-10 left-10 flex items-center gap-6 z-20">
+        <div class="flex items-center gap-3">
+          <span class="relative flex h-2 w-2">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex rounded-full h-2 w-2 bg-primary"
+            ></span>
+          </span>
+          <span
+            class="text-[10px] font-bold tracking-widest text-white/60 uppercase"
+          >
+            Systems Online [LIVE]
+          </span>
+        </div>
+        <div class="h-[1px] w-16 bg-white/20"></div>
+        <span
+          class="text-[10px] font-mono text-white/30 uppercase tracking-[0.2em]"
+        >
+          CORE-v3.0.1
+        </span>
+      </div>
+
+      <!-- Corner Borders -->
+      <div
+        class="absolute top-0 left-0 w-32 h-32 border-t border-l border-white/10 m-12 pointer-events-none"
+      ></div>
+      <div
+        class="absolute top-0 right-0 w-32 h-32 border-t border-r border-white/10 m-12 pointer-events-none"
+      ></div>
+      <div
+        class="absolute bottom-0 left-0 w-32 h-32 border-b border-l border-white/10 m-12 pointer-events-none"
+      ></div>
+      <div
+        class="absolute bottom-0 right-0 w-32 h-32 border-b border-r border-white/10 m-12 pointer-events-none"
+      ></div>
+    </section>
+    <!-- Inquiry Form Section -->
+
+    <section
+      class="py-20 px-6 bg-black border-t border-white/5"
+      id="inquiry-form"
+    >
+      <div class="max-w-4xl mx-auto">
+        <!-- Title Row -->
+        <div class="grid md:grid-cols-12 gap-12 mb-16">
+          <div class="md:col-span-4">
+            <span
+              class="text-primary text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block"
+            >
+              Inquiry_Protocol
+            </span>
+
+            <h2
+              class="text-5xl font-bold uppercase tracking-tighter leading-none"
+            >
+              START_YOUR_PROJECT
+            </h2>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <form class="space-y-12">
+          <!-- Row 1 -->
+          <div class="grid md:grid-cols-2 gap-12">
+            <div>
+              <label class="contact-label">FULL_NAME</label>
+              <input
+                class="contact-input placeholder:text-white/30"
+                placeholder="ENTER YOUR NAME"
+                type="text"
+              />
+            </div>
+
+            <div>
+              <label class="contact-label">EMAIL_ADDRESS</label>
+              <input
+                class="contact-input placeholder:text-white/30"
+                placeholder="EMAIL@DOMAIN.COM"
+                type="email"
+              />
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="grid md:grid-cols-2 gap-12">
+            <div>
+              <label class="contact-label">PROJECT_TYPE</label>
+              <select class="contact-input appearance-none text-white/30">
+                <option value="">SELECT PROJECT TYPE</option>
+                <option value="web">WEB DEVELOPMENT</option>
+                <option value="design">UI/UX & DESIGN</option>
+                <option value="marketing">MARKETING & GROWTH</option>
+                <option value="events">EVENTS & PRODUCTION</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="contact-label">ESTIMATED_BUDGET</label>
+              <input
+                class="contact-input placeholder:text-white/30"
+                placeholder="ESTIMATED BUDGET"
+                type="text"
+              />
+            </div>
+          </div>
+
+          <!-- Textarea -->
+          <div>
+            <label class="contact-label">DETAILED_PROJECT_BRIEF</label>
+            <textarea
+              class="contact-input resize-none placeholder:text-white/30"
+              placeholder="TELL US ABOUT YOUR WILD VISION..."
+              rows="4"
+            ></textarea>
+          </div>
+
+          <!-- Button -->
+          <div class="pt-8 flex justify-center">
+            <button
+              class="group relative px-12 py-5 bg-neutral-900 border border-primary text-primary font-bold uppercase tracking-[0.3em] text-xs transition-all hover:bg-primary hover:text-white hover:shadow-[0_0_30px_rgba(230,10,21,0.4)] overflow-hidden scale-110"
+            >
+              <span class="relative z-10">EXECUTE_TRANSMISSION</span>
+              <div
+                class="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"
+              ></div>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer
+      id="contact"
+      class="py-32 px-6 border-t border-white/5 bg-[#030303]"
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-24">
+          <div>
+            <h2
+              class="text-6xl md:text-8xl font-bold uppercase tracking-tighter leading-none mb-12"
+            >
+              INITIATE <br /><span class="text-primary">CONTACT</span>
+            </h2>
+            <div class="grid grid-cols-2 gap-12">
+              <div>
+                <span
+                  class="text-white/20 text-[9px] font-bold tracking-[0.4em] uppercase mb-4 block"
+                  >COMMS</span
+                >
+                <p class="text-lg font-bold">connect@crabstack.io</p>
+                <p class="text-lg font-bold">
+                  +91 84338 77879<br />+91 72086 85628
+                </p>
+              </div>
+              <div>
+                <span
+                  class="text-white/20 text-[9px] font-bold tracking-[0.4em] uppercase mb-4 block"
+                  >LOCATION</span
+                >
+                <p class="text-lg font-bold">Andheri East</p>
+                <p class="text-lg font-bold">Mumbai, Maharashtra</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col justify-center">
+            <div class="max-w-md">
+              <p class="text-white/40 text-lg font-light leading-relaxed mb-12">
+                Join the vanguard of digital engineering. Now accepting
+                high-priority digital missions.
+              </p>
+
+              <form class="relative">
+                <input
+                  type="email"
+                  placeholder="TRANSMISSION@CLIENT.COM"
+                  class="w-full bg-transparent border-b border-white/20 py-4 focus:outline-none focus:border-primary text-sm tracking-widest uppercase transition-colors"
+                />
+                <button
+                  class="absolute right-0 bottom-4 text-primary font-bold text-[10px] tracking-widest"
+                >
+                  CONNECT
+                </button>
+              </form>
+            </div>
+
+            <div class="flex items-center gap-12 mt-16">
+              <span
+                class="text-[10px] text-white/20 font-bold tracking-[0.5em]"
+              >
+                ©2026 CRABSTACK
+              </span>
+              <div class="h-[1px] flex-grow bg-white/5"></div>
+              <div class="flex gap-8">
+                <a class="text-[10px] text-white/40 hover:text-primary">TW</a>
+                <a class="text-[10px] text-white/40 hover:text-primary">IG</a>
+                <a class="text-[10px] text-white/40 hover:text-primary">LI</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Decorative Grids -->
+    <div
+      class="fixed inset-0 pointer-events-none z-[1] opacity-[0.03]"
+      style="
+        background-image: radial-gradient(white 1px, transparent 0);
+        background-size: 40px 40px;
+      "
+    ></div>
+  </body>
+</html>
